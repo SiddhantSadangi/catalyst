@@ -146,7 +146,7 @@ class NeptuneLogger(ILogger):
 
     def _log_metrics(self, metrics: Dict[str, float], neptune_path: str, step: int):
         for key, value in metrics.items():
-            self.run[f"{neptune_path}/{key}"].log(value=float(value), step=step)
+            self.run[neptune_path][key].log(value=float(value), step=step)
 
     def _log_image(self, image: np.ndarray, neptune_path: str):
         self.run[neptune_path].log(neptune.types.File.as_image(image))
